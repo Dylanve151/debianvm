@@ -14,6 +14,7 @@ apt-get upgrade -y
 
 apt-get install -y \
 	net-tools \
+	curl \
 	wget \
 	git \
 	chromium \
