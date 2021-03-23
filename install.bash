@@ -39,14 +39,6 @@ apt-get install -y \
 #add user to sudo
 echo 'user ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
-#Setting some gnome settings on user
-su user
-gsettings set org.gnome.shell favorite-apps "['org.gnome.Terminal.desktop' ,'chromium.desktop', 'org.gnome.Nautilus.desktop']"
-gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 0
-gsettings set org.gnome.desktop.session idle-delay 0
-gsettings set org.gnome.desktop.screensaver lock-enabled false
-gsettings get org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
-
 #prepare and install Guest additions
 m-a prepare
 
@@ -54,3 +46,11 @@ cd /media/cdrom
 sh ./VBoxLinuxAdditions.run --nox11
 
 echo "Please reboot"
+
+#Setting some gnome settings on user
+su user
+gsettings set org.gnome.shell favorite-apps "['org.gnome.Terminal.desktop' ,'chromium.desktop', 'org.gnome.Nautilus.desktop']"
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 0
+gsettings set org.gnome.desktop.session idle-delay 0
+gsettings set org.gnome.desktop.screensaver lock-enabled false
+gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
