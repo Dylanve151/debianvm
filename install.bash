@@ -45,12 +45,12 @@ m-a prepare
 cd /media/cdrom
 sh ./VBoxLinuxAdditions.run --nox11
 
+#Setting some gnome settings on user
+sudo -Hu user gsettings set org.gnome.shell favorite-apps "['org.gnome.Terminal.desktop' ,'chromium.desktop', 'org.gnome.Nautilus.desktop']"
+sudo -Hu user gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 0
+sudo -Hu user gsettings set org.gnome.desktop.session idle-delay 0
+sudo -Hu user gsettings set org.gnome.desktop.screensaver lock-enabled false
+sudo -Hu user gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+
 echo "Please reboot"
 
-#Setting some gnome settings on user
-su user
-gsettings set org.gnome.shell favorite-apps "['org.gnome.Terminal.desktop' ,'chromium.desktop', 'org.gnome.Nautilus.desktop']"
-gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 0
-gsettings set org.gnome.desktop.session idle-delay 0
-gsettings set org.gnome.desktop.screensaver lock-enabled false
-gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
