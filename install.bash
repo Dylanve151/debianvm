@@ -2,13 +2,21 @@
 
 apt-get purge -y -f \
 	gnome-games \
+	debian-reference-common \
+	firefox-esr \
 	xiterm+thai
 	
 apt-get autoremove -y -f
 
 apt-get update
+
+apt-get upgrade -y
+
 apt-get install -y \
 	net-tools \
+	wget \
+	git \
+	chromium \
 	build-essential \
 	dkms \
 	module-assistant \
