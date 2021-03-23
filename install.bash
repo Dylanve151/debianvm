@@ -1,5 +1,11 @@
 #!/bin/bash
 
+apt-get purge -y -f \
+	gnome-games \
+	xiterm+thai
+	
+apt-get autoremove -y -f
+
 apt-get update
 apt-get install -y \
 	net-tools \
