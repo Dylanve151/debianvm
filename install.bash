@@ -29,6 +29,7 @@ apt-get upgrade -y
 
 apt-get install -y \
 	net-tools \
+	dnsutils \
 	curl \
 	wget \
 	git \
