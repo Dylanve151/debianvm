@@ -3,8 +3,23 @@
 #Deinstall stuff that I dont need.
 apt-get purge -y -f \
 	gnome-games \
+	gnome-weather \
+	gnome-sound-recorder \
+	gnome-todo \
+	gnome-todo-common \
+	gnome-video-effects \
+	gnome-maps \
+	gnome-music \
+	gnome-documents \
+	gnome-contacts \
+	gnome-calendar \
+	gnome-clocks \
+	gnome-screenshot \
+	gnome-characters \
+	gnome-font-viewer \
 	debian-reference-common \
 	evolution \
+	evolution-* \
 	mozc-* \
 	anthy \
 	anthy-* \
@@ -18,6 +33,32 @@ apt-get purge -y -f \
 	konwert \
 	mlterm \
 	mlterm-* \
+	fcitx5 \
+	fcitx5-* \
+	transmission-common \
+	xterm \
+	synaptic \
+	libreoffice* \
+	hspell \
+	hunspell \
+	hunspell-* \
+	aspell \
+	cheese \
+	shotwell \
+	shotwell-common \
+	rhythmbox \
+	rhythmbox-* \
+	totem \
+	totem-* \
+	evince \
+	evince-* \
+	eog \
+	yelp \
+	yelp-* \
+	system-config-printer \
+	system-config-printer-* \
+	malcontent \
+	malcontent-* \
 	thunderbird
 	
 apt-get autoremove -y -f
@@ -33,7 +74,9 @@ apt-get install -y \
 	curl \
 	wget \
 	git \
+	nano \
 	chromium \
+	firefox-esr \
 	build-essential \
 	dkms \
 	module-assistant \
@@ -57,7 +100,7 @@ m-a prepare
 
 mount /dev/sr0
 
-cd /media/cdrom
+cd /media/cdrom0
 sh ./VBoxLinuxAdditions.run --nox11
 
 #showing a message that is shown anyway at the end of installing Guest additions but I am stubborn so I need a extra reminder that I need to reboot
