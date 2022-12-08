@@ -22,7 +22,7 @@ apt-get purge -y -f \
 	
 apt-get autoremove -y -f
 
-#Update and install stuff that I want. yes, I like chromium.
+#Update and install stuff that I want.
 apt-get update
 
 apt-get upgrade -y
