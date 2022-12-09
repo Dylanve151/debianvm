@@ -8,7 +8,6 @@ apt-get purge -y -f \
 	gnome-games \
 	debian-reference-common \
 	evolution \
-	evolution-* \
 	mozc-* \
 	anthy \
 	anthy-* \
@@ -22,7 +21,8 @@ apt-get purge -y -f \
 	konwert \
 	mlterm \
 	mlterm-* \
-	thunderbird
+	thunderbird \
+	libreoffice*
 
 apt-get autoremove -y -f
 
