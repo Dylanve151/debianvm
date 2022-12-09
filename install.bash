@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#mount disk. please make sure Guest additions is inserted
+mount --source /dev/sr0 --target /media/cdrom0
+
 #Deinstall stuff that I dont need.
 apt-get purge -y -f \
 	gnome-games \
@@ -97,8 +100,6 @@ sudo -Hu user gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 
 #prepare and install Guest additions.
 m-a prepare
-
-mount /dev/sr0
 
 cd /media/cdrom0
 sh ./VBoxLinuxAdditions.run --nox11
