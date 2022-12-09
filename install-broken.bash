@@ -22,7 +22,6 @@ apt-get remove -y -f \
 	gnome-font-viewer \
 	debian-reference-common \
 	evolution \
-	evolution-* \
 	mozc-* \
 	anthy \
 	anthy-* \
@@ -72,6 +71,7 @@ apt-get update
 apt-get upgrade -y
 
 apt-get install -y \
+	openssh-server \
 	net-tools \
 	dnsutils \
 	curl \
