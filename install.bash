@@ -22,8 +22,7 @@ apt-get purge -y -f \
 	konwert \
 	mlterm \
 	mlterm-* \
-	thunderbird \
-	libreoffice
+	thunderbird
 
 apt-get autoremove -y -f
 
