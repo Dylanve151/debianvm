@@ -1,10 +1,14 @@
 #!/bin/bash
 
+#mount disk. please make sure Guest additions is inserted
+mount --source /dev/sr0 --target /media/cdrom0
+
 #Deinstall stuff that I dont need.
 apt-get purge -y -f \
 	gnome-games \
 	debian-reference-common \
 	evolution \
+	evolution-* \
 	mozc-* \
 	anthy \
 	anthy-* \
@@ -18,7 +22,8 @@ apt-get purge -y -f \
 	konwert \
 	mlterm \
 	mlterm-* \
-	thunderbird
+	thunderbird \
+	libreoffice
 
 apt-get autoremove -y -f
 
@@ -33,6 +38,7 @@ apt-get install -y \
 	wget \
 	git \
 	chromium \
+	firefox-esr \
 	build-essential \
 	dkms \
 	module-assistant \
@@ -54,9 +60,7 @@ sudo -Hu user gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 #prepare and install Guest additions.
 m-a prepare
 
-mount /dev/sr0
 cd /media/cdrom0
-
 sh ./VBoxLinuxAdditions.run --nox11
 
 #showing a message that is shown anyway at the end of installing Guest additions but I am stubborn so I need a extra reminder that I need to reboot
