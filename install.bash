@@ -4,7 +4,7 @@
 mount --source /dev/sr0 --target /media/cdrom0
 
 #Deinstall stuff that I dont need.
-apt-get purge -y -f \
+apt-get remove -y -f \
 	gnome-games \
 	gnome-weather \
 	gnome-sound-recorder \
