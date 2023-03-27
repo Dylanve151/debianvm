@@ -3,7 +3,18 @@
 if [ $USER == 'root' ]
 then
 	#mount disk. please make sure Guest additions is inserted
-	mount --source /dev/sr0 --target /media/cdrom0
+	if [ ! -f "/media/cdrom0/VBoxLinuxAdditions.run" ]
+	then
+		umount /media/cdrom0 > /dev/null 2>&1
+		mount -o ro --source /dev/sr0 --target /media/cdrom0
+		if [ ! -f "/media/cdrom0/VBoxLinuxAdditions.run" ]
+		then
+			umount /media/cdrom0 > /dev/null 2>&1
+			echo "Please mount Guest additions!"
+			exit 1
+		fi
+	fi
+
 
 	#Deinstall stuff that I dont need.
 	apt-get remove -y -f \
