@@ -1,10 +1,10 @@
 #!/bin/bash
 
-#Check if root
 if [ $USER == 'root' ]
-then  
-  if [ ! -f "/media/cdrom0/VBoxLinuxAdditions.run" ]
-  then
+then
+	#mount disk. please make sure Guest additions is inserted
+	if [ ! -f "/media/cdrom0/VBoxLinuxAdditions.run" ]
+	then
 		umount /media/cdrom0 > /dev/null 2>&1
 		mount -o ro --source /dev/sr0 --target /media/cdrom0
 		if [ ! -f "/media/cdrom0/VBoxLinuxAdditions.run" ]
@@ -14,18 +14,17 @@ then
 			exit 1
 		fi
 	fi
-  
-  tempdir=$(mktemp -d)
-  
-  curl -s https://raw.githubusercontent.com/LostByteSoft/Debian-10/master/remove%20ALL%20deb%2012.0%20excep%20zzz.sh | sed "s/read name/#read name/g" | sed "s/read -n 1/#read -n 1/g" | sed "s/noquit=1/noquit=0/g" > $tempdir/remove-all.sh
-  curl -s https://raw.githubusercontent.com/LostByteSoft/Debian-10/master/remove%20zzz%20evince.sh | sed "s/read name/#read name/g" | sed "s/read -n 1/#read -n 1/g" | sed "s/noquit=1/noquit=0/g" > $tempdir/remove-evince.sh
-  curl -s https://raw.githubusercontent.com/LostByteSoft/Debian-10/master/remove%20zzz%20gimp.sh | sed "s/read name/#read name/g" | sed "s/read -n 1/#read -n 1/g" | sed "s/noquit=1/noquit=0/g" > $tempdir/remove-gimp.sh
-  curl -s https://raw.githubusercontent.com/LostByteSoft/Debian-10/master/remove%20zzz%20libreoffice.sh | sed "s/read name/#read name/g" | sed "s/read -n 1/#read -n 1/g" | sed "s/noquit=1/noquit=0/g" > $tempdir/remove-libreoffice.sh
-  curl -s https://raw.githubusercontent.com/LostByteSoft/Debian-10/master/remove%20zzz%20rhythmbox.sh | sed "s/read name/#read name/g" | sed "s/read -n 1/#read -n 1/g" | sed "s/noquit=1/noquit=0/g" > $tempdir/remove-rhythmbox.sh
-  
-  sh $tempdir/remove-*.sh
-  
+
+
 	#Deinstall stuff that I dont need.
+	tempdir=$(mktemp -d)
+	curl -s https://raw.githubusercontent.com/LostByteSoft/Debian-10/master/remove%20ALL%20deb%2012.0%20excep%20zzz.sh | sed "s/read name/#read name/g" | sed "s/read -n 1/#read -n 1/g" | sed "s/noquit=1/noquit=0/g" > $tempdir/remove-all.sh
+	curl -s https://raw.githubusercontent.com/LostByteSoft/Debian-10/master/remove%20zzz%20evince.sh | sed "s/read name/#read name/g" | sed "s/read -n 1/#read -n 1/g" | sed "s/noquit=1/noquit=0/g" > $tempdir/remove-evince.sh
+	curl -s https://raw.githubusercontent.com/LostByteSoft/Debian-10/master/remove%20zzz%20gimp.sh | sed "s/read name/#read name/g" | sed "s/read -n 1/#read -n 1/g" | sed "s/noquit=1/noquit=0/g" > $tempdir/remove-gimp.sh
+	curl -s https://raw.githubusercontent.com/LostByteSoft/Debian-10/master/remove%20zzz%20libreoffice.sh | sed "s/read name/#read name/g" | sed "s/read -n 1/#read -n 1/g" | sed "s/noquit=1/noquit=0/g" > $tempdir/remove-libreoffice.sh
+	curl -s https://raw.githubusercontent.com/LostByteSoft/Debian-10/master/remove%20zzz%20rhythmbox.sh | sed "s/read name/#read name/g" | sed "s/read -n 1/#read -n 1/g" | sed "s/noquit=1/noquit=0/g" > $tempdir/remove-rhythmbox.sh
+	sh $tempdir/remove-*.sh
+
 	apt-get remove -y -f \
 		gnome-games \
 		gnome-weather \
