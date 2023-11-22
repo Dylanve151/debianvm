@@ -99,7 +99,6 @@ then
 		wget \
 		git \
 		nano \
-		chromium \
 		firefox-esr \
 		build-essential \
 		dkms \
@@ -126,13 +125,13 @@ then
 	#Setting some gnome settings on user. disable automatic suspend, blank screen and also changing it to a dark theme so my eyes dont burn at night.
 	if [[ -z $DBUS_SESSION_BUS_ADDRESS ]]; then
 	  while read -r sessionId; do
-	    grepVarMatch=$(grep -z "^DBUS_SESSION_BUS_ADDRESS=" /proc/$sessionId/enviro>
+	    grepVarMatch=$(grep -z "^DBUS_SESSION_BUS_ADDRESS=" /proc/$sessionId/environ)
 	    if [[ "$grepVarMatch" != "" ]]; then
 	      export DBUS_SESSION_BUS_ADDRESS="${grepVarMatch#*=}"
 	    fi
 	  done <<< "$(pgrep "gnome-session" -u "user")"
 	fi
-	runuser -u user gsettings set org.gnome.shell favorite-apps "['org.gnome.Terminal.desktop' , 'firefox-esr.desktop','chromium.desktop', 'org.gnome.Nautilus.desktop']"
+	runuser -u user gsettings set org.gnome.shell favorite-apps "['org.gnome.Terminal.desktop' , 'firefox-esr.desktop' , 'org.gnome.Nautilus.desktop']"
 	runuser -u user gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 0
 	runuser -u user gsettings set org.gnome.desktop.session idle-delay 0
 	runuser -u user gsettings set org.gnome.desktop.screensaver lock-enabled false
