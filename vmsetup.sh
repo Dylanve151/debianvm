@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $USER == 'root' ]
+if [ $(whoami) == 'root' ]
 then
 	#mount disk. please make sure Guest additions is inserted
 	if [ ! -f "/media/cdrom0/VBoxLinuxAdditions.run" ]
