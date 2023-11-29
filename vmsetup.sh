@@ -3,17 +3,20 @@
 if [ $(whoami) == 'root' ]
 then
 	#mount disk. please make sure Guest additions is inserted
-	if [ ! -f "/media/cdrom0/VBoxLinuxAdditions.run" ]
-	then
-		umount /media/cdrom0 > /dev/null 2>&1
-		mount -o ro --source /dev/sr0 --target /media/cdrom0
+ 	if [ $1 -ne "nocd" ]
+  	then
 		if [ ! -f "/media/cdrom0/VBoxLinuxAdditions.run" ]
 		then
 			umount /media/cdrom0 > /dev/null 2>&1
-			echo "Please mount Guest additions!"
-			exit 1
+			mount -o ro --source /dev/sr0 --target /media/cdrom0
+			if [ ! -f "/media/cdrom0/VBoxLinuxAdditions.run" ]
+			then
+				umount /media/cdrom0 > /dev/null 2>&1
+				echo "Please mount Guest additions!"
+				exit 1
+			fi
 		fi
-	fi
+ 	fi
 
 
 	#Deinstall stuff that I dont need.
@@ -137,12 +140,14 @@ then
 	runuser -u user gsettings set org.gnome.desktop.screensaver lock-enabled false
 	runuser -u user gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 
-	#prepare and install Guest additions.
-	m-a prepare
-
-	cd /media/cdrom0
-	sh ./VBoxLinuxAdditions.run --nox11
-
+	if [ $1 -ne "nocd" ]
+ 	then
+		#prepare and install Guest additions.
+		m-a prepare
+	
+		cd /media/cdrom0
+		sh ./VBoxLinuxAdditions.run --nox11
+	fi
 	#showing a message that is shown anyway at the end of installing Guest additions but I am stubborn so I need a extra reminder that I need to reboot
 	echo "Please reboot"
 else
