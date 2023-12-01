@@ -3,7 +3,7 @@
 if [ $(whoami) == 'root' ]
 then
 	#mount disk. please make sure Guest additions is inserted
- 	if [ $1 -ne "nocd" ]
+ 	if [ $1 != "nocd" ]
   	then
 		if [ ! -f "/media/cdrom0/VBoxLinuxAdditions.run" ]
 		then
@@ -140,7 +140,7 @@ then
 	runuser -u user gsettings set org.gnome.desktop.screensaver lock-enabled false
 	runuser -u user gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 
-	if [ $1 -ne "nocd" ]
+	if [ $1 != "nocd" ]
  	then
 		#prepare and install Guest additions.
 		m-a prepare
